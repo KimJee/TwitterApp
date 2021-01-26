@@ -2,7 +2,6 @@ package com.codepath.apps.KimJeeTwitter;
 
 import android.content.Context;
 import android.util.Log;
-import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -75,6 +74,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
         ImageView ivProfileImage;
         TextView tvScreenName;
         TextView tvTweet;
+        TextView tvTimeDiff;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView); // Representation of one "row" in the recycler view.
@@ -84,6 +84,7 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             ivProfileImage = itemView.findViewById(R.id.ivProfileImage);
             tvScreenName = itemView.findViewById(R.id.tvScreenName);
             tvTweet = itemView.findViewById(R.id.tvTweet);
+            tvTimeDiff = itemView.findViewById(R.id.tvTimeDiff);
         }
 
         public void bind(Tweet tweet)
@@ -91,6 +92,8 @@ public class TweetsAdapter extends RecyclerView.Adapter<TweetsAdapter.ViewHolder
             Log.i("ViewHolder", "bind: Binding to the image");
             tvTweet.setText(tweet.body);
             tvScreenName.setText(tweet.user.screenName);
+            // Change the timestamp
+            tvTimeDiff.setText(tweet.timeDifference);
             Glide.with(context).load(tweet.user.profileimageUrl).into(ivProfileImage);
         }
     }
